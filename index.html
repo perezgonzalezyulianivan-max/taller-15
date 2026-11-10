@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Gestión de Estudiantes</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="encabezado">
+    <div class="encabezado__marca">
+      <span class="encabezado__logo" aria-hidden="true">UC</span>
+      <div>
+        <h1>Sistema de Gestión de Estudiantes</h1>
+        <p>Panel administrativo académico &middot; Programación Web Creativa II</p>
+      </div>
+    </div>
+    <p class="encabezado__fecha" id="fechaActual"></p>
+  </header>
+
+  <main class="contenedor">
+
+    <section class="indicadores" aria-label="Indicadores generales">
+      <article class="tarjeta tarjeta--total">
+        <p class="tarjeta__titulo">Total de estudiantes</p>
+        <p class="tarjeta__valor" id="indTotal">0</p>
+        <p class="tarjeta__detalle">Registros almacenados</p>
+      </article>
+      <article class="tarjeta tarjeta--promedio">
+        <p class="tarjeta__titulo">Promedio general</p>
+        <p class="tarjeta__valor" id="indPromedio">0.00</p>
+        <p class="tarjeta__detalle">Escala de 0.0 a 5.0</p>
+      </article>
+      <article class="tarjeta tarjeta--aprobados">
+        <p class="tarjeta__titulo">Aprobados</p>
+        <p class="tarjeta__valor" id="indAprobados">0</p>
+        <p class="tarjeta__detalle">Calificación &ge; 3.0</p>
+      </article>
+      <article class="tarjeta tarjeta--reprobados">
+        <p class="tarjeta__titulo">Reprobados</p>
+        <p class="tarjeta__valor" id="indReprobados">0</p>
+        <p class="tarjeta__detalle">Calificación &lt; 3.0</p>
+      </article>
+    </section>
+
+    <div class="disposicion">
+
+      <section class="panel" aria-labelledby="tituloFormulario">
+        <h2 class="panel__titulo" id="tituloFormulario">Registrar estudiante</h2>
+
+        <form id="formEstudiante" novalidate>
+          <div class="campo">
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" name="nombre"
+                   placeholder="Ej: Laura Gómez Ríos" autocomplete="off">
+            <small class="error" id="errorNombre"></small>
+          </div>
+
+          <div class="campo">
+            <label for="identificacion">Número de identificación (ficticio)</label>
+            <input type="text" id="identificacion" name="identificacion"
+                   placeholder="Ej: 1001234501" inputmode="numeric" autocomplete="off">
+            <small class="error" id="errorIdentificacion"></small>
+          </div>
+
+          <div class="campo">
+            <label for="correo">Correo electrónico</label>
+            <input type="email" id="correo" name="correo"
+                   placeholder="Ej: laura.gomez@correo.com" autocomplete="off">
+            <small class="error" id="errorCorreo"></small>
+          </div>
+
+          <div class="campo">
+            <label for="programa">Programa académico</label>
+            <select id="programa" name="programa">
+              <option value="">Seleccione un programa</option>
+            </select>
+            <small class="error" id="errorPrograma"></small>
+          </div>
+
+          <div class="campo">
+            <label for="calificacion">Calificación (0.0 a 5.0)</label>
+            <input type="number" id="calificacion" name="calificacion"
+                   min="0" max="5" step="0.1" placeholder="Ej: 4.2">
+            <small class="error" id="errorCalificacion"></small>
+          </div>
+
+          <div class="acciones-formulario">
+            <button type="submit" class="btn btn--primario" id="btnGuardar">
+              Registrar estudiante
+            </button>
+            <button type="button" class="btn btn--secundario" id="btnCancelar" hidden>
+              Cancelar edición
+            </button>
+          </div>
+        </form>
+
+        <p class="mensaje" id="mensaje" role="status" aria-live="polite"></p>
+      </section>
+
+      <section class="panel" aria-labelledby="tituloListado">
+        <div class="panel__cabecera">
+          <h2 class="panel__titulo" id="tituloListado">Listado de estudiantes</h2>
+          <span class="contador" id="contadorResultados"></span>
+        </div>
+
+        <div class="filtros">
+          <div class="campo">
+            <label for="buscarNombre">Buscar por nombre</label>
+            <input type="search" id="buscarNombre" placeholder="Escriba un nombre..."
+                   autocomplete="off">
+          </div>
+          <div class="campo">
+            <label for="filtroPrograma">Programa académico</label>
+            <select id="filtroPrograma">
+              <option value="todos">Todos los programas</option>
+            </select>
+          </div>
+          <div class="campo">
+            <label for="filtroEstado">Estado académico</label>
+            <select id="filtroEstado">
+              <option value="todos">Todos los estados</option>
+              <option value="Aprobado">Aprobado</option>
+              <option value="Reprobado">Reprobado</option>
+            </select>
+          </div>
+          <button type="button" class="btn btn--secundario" id="btnLimpiarFiltros">
+            Limpiar filtros
+          </button>
+        </div>
+
+        <div class="tabla-contenedor">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Identificación</th>
+                <th>Nombre completo</th>
+                <th>Correo electrónico</th>
+                <th>Programa</th>
+                <th>Nota</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="cuerpoTabla"></tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="pie">
+    <p>Universidad de Caldas &middot; Programación Web Creativa II &middot; Taller 15</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,462 @@
+/* ==========================================================
+   TALLER 15 - SISTEMA DE GESTIÓN DE ESTUDIANTES
+   Hoja de estilos: azul oscuro, blanco y detalles celestes
+   ========================================================== */
+
+/* ---------- 1. Variables y reglas generales ---------- */
+:root {
+  --azul-oscuro: #0b2545;
+  --azul-medio: #13407a;
+  --azul-claro: #1d5fa8;
+  --celeste: #4cc9f0;
+  --celeste-suave: #d9f2fc;
+  --fondo: #eef4fb;
+  --blanco: #ffffff;
+  --texto: #1b2a3d;
+  --texto-suave: #5a6b82;
+  --borde: #d3deec;
+  --verde: #187a4c;
+  --verde-fondo: #dcf5e8;
+  --rojo: #b83232;
+  --rojo-fondo: #fde4e4;
+  --sombra: 0 4px 14px rgba(11, 37, 69, 0.10);
+  --radio: 12px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+body {
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background: var(--fondo);
+  color: var(--texto);
+  line-height: 1.5;
+}
+
+/* ---------- 2. Encabezado ---------- */
+.encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 22px 32px;
+  background: linear-gradient(120deg, var(--azul-oscuro), var(--azul-medio));
+  color: var(--blanco);
+  border-bottom: 5px solid var(--celeste);
+}
+
+.encabezado__marca {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.encabezado__logo {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--celeste);
+  color: var(--azul-oscuro);
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.encabezado h1 {
+  font-size: 1.6rem;
+  line-height: 1.2;
+}
+
+.encabezado p {
+  color: var(--celeste-suave);
+  font-size: 0.92rem;
+}
+
+.encabezado__fecha {
+  text-transform: capitalize;
+}
+
+/* ---------- 3. Contenedor principal ---------- */
+.contenedor {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 28px 24px 40px;
+}
+
+/* ---------- 4. Tarjetas de estadísticas (Grid) ---------- */
+.indicadores {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  margin-bottom: 26px;
+}
+
+.tarjeta {
+  padding: 20px 22px;
+  background: var(--blanco);
+  border-radius: var(--radio);
+  border-left: 6px solid var(--celeste);
+  box-shadow: var(--sombra);
+}
+
+.tarjeta__titulo {
+  color: var(--texto-suave);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.tarjeta__valor {
+  margin: 4px 0;
+  color: var(--azul-oscuro);
+  font-size: 2.4rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.tarjeta__detalle {
+  color: var(--texto-suave);
+  font-size: 0.85rem;
+}
+
+.tarjeta--total {
+  border-left-color: var(--azul-claro);
+}
+
+.tarjeta--promedio {
+  border-left-color: var(--celeste);
+}
+
+.tarjeta--aprobados {
+  border-left-color: var(--verde);
+}
+
+.tarjeta--aprobados .tarjeta__valor {
+  color: var(--verde);
+}
+
+.tarjeta--reprobados {
+  border-left-color: var(--rojo);
+}
+
+.tarjeta--reprobados .tarjeta__valor {
+  color: var(--rojo);
+}
+
+/* ---------- 5. Disposición: formulario + listado (Grid) ---------- */
+.disposicion {
+  display: grid;
+  grid-template-columns: 340px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.panel {
+  padding: 22px;
+  background: var(--blanco);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+}
+
+.panel__cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.panel__titulo {
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  color: var(--azul-oscuro);
+  font-size: 1.15rem;
+  border-bottom: 3px solid var(--celeste);
+}
+
+.panel__cabecera .panel__titulo {
+  flex: 1;
+}
+
+.contador {
+  margin-bottom: 16px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--celeste-suave);
+  color: var(--azul-medio);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+/* ---------- 6. Formulario ---------- */
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 14px;
+}
+
+label {
+  color: var(--azul-oscuro);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid var(--borde);
+  border-radius: 8px;
+  background: var(--blanco);
+  color: var(--texto);
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--celeste);
+  box-shadow: 0 0 0 3px rgba(76, 201, 240, 0.30);
+}
+
+input.invalido,
+select.invalido {
+  border-color: var(--rojo);
+  background: #fff7f7;
+}
+
+.error {
+  min-height: 1em;
+  color: var(--rojo);
+  font-size: 0.8rem;
+}
+
+.acciones-formulario {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.mensaje {
+  margin-top: 14px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.mensaje:empty {
+  display: none;
+}
+
+.mensaje--exito {
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--verde-fondo);
+  color: var(--verde);
+}
+
+.mensaje--error {
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--rojo-fondo);
+  color: var(--rojo);
+}
+
+/* ---------- 7. Botones ---------- */
+.btn {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn--primario {
+  background: var(--azul-medio);
+  color: var(--blanco);
+}
+
+.btn--primario:hover {
+  background: var(--azul-oscuro);
+}
+
+.btn--secundario {
+  background: var(--celeste-suave);
+  color: var(--azul-medio);
+}
+
+.btn--secundario:hover {
+  background: var(--celeste);
+  color: var(--azul-oscuro);
+}
+
+.btn--editar {
+  background: var(--celeste-suave);
+  color: var(--azul-medio);
+}
+
+.btn--editar:hover {
+  background: var(--celeste);
+}
+
+.btn--eliminar {
+  background: var(--rojo-fondo);
+  color: var(--rojo);
+}
+
+.btn--eliminar:hover {
+  background: var(--rojo);
+  color: var(--blanco);
+}
+
+.btn--mini {
+  padding: 5px 10px;
+  font-size: 0.8rem;
+}
+
+/* ---------- 8. Filtros (Flexbox) ---------- */
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 14px;
+  margin-bottom: 18px;
+  padding: 14px;
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  background: #f6faff;
+}
+
+.filtros .campo {
+  flex: 1 1 170px;
+  margin-bottom: 0;
+}
+
+.filtros .btn {
+  flex: 0 0 auto;
+}
+
+/* ---------- 9. Tabla ---------- */
+.tabla-contenedor {
+  overflow-x: auto;
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+}
+
+table {
+  width: 100%;
+  min-width: 860px;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+thead th {
+  padding: 12px 10px;
+  background: var(--azul-oscuro);
+  color: var(--blanco);
+  font-size: 0.8rem;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+tbody td {
+  padding: 11px 10px;
+  border-bottom: 1px solid var(--borde);
+  vertical-align: middle;
+}
+
+tbody tr:nth-child(even) {
+  background: #f6faff;
+}
+
+tbody tr:hover {
+  background: var(--celeste-suave);
+}
+
+td.nota {
+  font-weight: 700;
+  color: var(--azul-oscuro);
+}
+
+.acciones-fila {
+  display: flex;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+td.vacio {
+  padding: 30px 10px;
+  color: var(--texto-suave);
+  text-align: center;
+  font-style: italic;
+}
+
+/* ---------- 10. Etiquetas de estado ---------- */
+.etiqueta {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.etiqueta--aprobado {
+  background: var(--verde-fondo);
+  color: var(--verde);
+}
+
+.etiqueta--reprobado {
+  background: var(--rojo-fondo);
+  color: var(--rojo);
+}
+
+/* ---------- 11. Pie de página ---------- */
+.pie {
+  padding: 18px;
+  background: var(--azul-oscuro);
+  color: var(--celeste-suave);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* ---------- 12. Diseño adaptable ---------- */
+@media (max-width: 980px) {
+  .disposicion {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .encabezado {
+    padding: 18px;
+  }
+
+  .encabezado h1 {
+    font-size: 1.25rem;
+  }
+
+  .contenedor {
+    padding: 18px 12px 30px;
+  }
+}
